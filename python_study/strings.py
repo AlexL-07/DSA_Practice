@@ -43,6 +43,8 @@ print(course.find('P'))
 print(course.replace('Beginners', 'Noobs'))
     # string.replace('string1, string2') finds and replaces string1 with string2 
 print('Python' in course)
-    # 'input string' in 'string' searches for the input string within the string and returns a boolean  
+    # 'input string' in 'string' searches for the input string within the string and returns a boolean
+print(course.split(" "))
+    # string.split("") splits the characters or words of a string into an array, determined by whatever input you decide to put in 
   
 
