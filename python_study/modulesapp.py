@@ -22,3 +22,21 @@ ecommerce.shipping.calc_shipping()
 calc_shipping()
 
 shipping.calc_shipping()
+
+# Python interpreter has a lot of built in modules if you want to learn about them go here: https://docs.python.org/3/py-modindex.html
+
+import random
+# random is an example of a module built into python, you can access random and its functions by importing it 
+for i in range(3):
+    print(random.random())
+    # random.random() gives us a random float 
+    print(random.randint(10, 20))
+    # random.randint(a, b) gives a random number from within a-b inclusive 
+
+
+members = ['Alex', 'Mary', 'Bob', 'Mosh']
+leader = random.choice(members)
+    # random.choice(array) chooses an item randomly from a given array 
+print(leader)
+
+# there are a lot of other packages created by other python users online at https://pypi.org/
