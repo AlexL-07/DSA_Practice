@@ -101,6 +101,7 @@ class Solution(object):
 
         for x in range(len(nums), 0, -1):
             # range(start, stop, step), with -1 we are going to be subtracting 1 from len(nums) until we reach 0
+            # default step is +1 if we do not include a step 
             if x in frq:
                 for i in frq[x]:
                     arr.append(i)
