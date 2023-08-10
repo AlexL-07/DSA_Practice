@@ -144,3 +144,70 @@ class Solution(object):
                 m = temp
             i -= 1
         return arr
+
+# 393. Is Subsequence
+class Solution(object):
+    def isSubsequence(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        i = j = 0
+
+        while i < len(s) and j < len(t):
+            if s[i] == t[j]:
+                i += 1
+            j += 1
+        
+        return i == len(s)
+
+# 58. Length of Last Word
+class Solution(object):
+    def lengthOfLastWord(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+
+        words = s.split(" ")
+        
+        i = len(words) - 1
+        
+        while len(words[i]) == 0:
+            del words[i]
+            i -= 1
+
+        return len(words[-1])
+
+    # better solution 
+class Solution(object):
+    def lengthOfLastWord(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+
+        words = s.split()
+        # string.split() with no parameters gets rid of all empty spaces but does not split the words up into characters
+        # to split words up into characters use list(string)
+        return len(words[-1])
+    
+
+# 14. Longest Common Prefix
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+
+        prefix = strs[0]
+
+        for s in strs:
+            while not s.startswith(prefix):
+                # string.startswith(str) returns a boolean if the string starts with the same characters as the input string
+                prefix = prefix[:-1]
+                    # if string.startswith(str) returns false, we will keep removing the last character until it returns true to exit the while loop 
+        
+        return prefix
