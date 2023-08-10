@@ -65,7 +65,24 @@ class Solution(object):
         
         
         return list(res.values())
-            # the list() constructor returns a list (array pretty much) in python 
+            # the list() constructor returns a list (array pretty much) in python
+
+
+# 1929. Concatenation of Array
+
+class Solution(object):
+    def getConcatenation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        length = len(nums)
+
+        for i in range(0, length):
+            nums.append(nums[i])
+        
+
+        return nums
 
 
 # 347. Top K Frequent Elements
@@ -108,3 +125,22 @@ class Solution(object):
 
 
         return [arr[x] for x in range(0, k)]
+
+
+# 1299. Replace Elements with Greatest Element on Right Side 
+class Solution(object):
+    def replaceElements(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: List[int]
+        """
+
+        m = -1
+        i = len(arr) - 1
+        while i >= 0:
+            temp = arr[i]
+            arr[i] = m
+            if temp > m:
+                m = temp
+            i -= 1
+        return arr
