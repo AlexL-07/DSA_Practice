@@ -35,7 +35,7 @@ print(course.upper())
     # string.upper() makes every character of a string uppercase 
 print(course.lower())
     # string.lower() makes every character of a string lowercase 
-print(course.find('P'))
+print(course.find('z'))
     # string.find('') finds the first index where the specified character appears in your string
         # case sensitive
         # if the character is not within the string it will return -1 

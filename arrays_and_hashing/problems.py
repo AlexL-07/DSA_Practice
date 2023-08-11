@@ -211,3 +211,211 @@ class Solution(object):
                     # if string.startswith(str) returns false, we will keep removing the last character until it returns true to exit the while loop 
         
         return prefix
+
+
+# 118. Pascal's Triangle
+class Solution(object):
+    def generate(self, numRows):
+        """
+        :type numRows: int
+        :rtype: List[List[int]]
+        """
+        if numRows == 1:
+            return [[1]]
+        
+        triangle = [[1], [1, 1]]
+        
+        if numRows == 2:
+            return triangle
+
+        i = 1
+        while i < numRows - 1:
+            row = []
+            j = 0
+            x = 1
+            while x < len(triangle[i]):
+                sum = triangle[i][j] + triangle[i][x]
+                row.append(sum)
+                j += 1
+                x += 1
+            
+            row.insert(0, 1)
+            row.append(1)
+            triangle.append(row)
+            i += 1
+        
+        return triangle
+    
+
+# 27. Remove Element
+class Solution(object):
+    def removeElement(self, nums, val):
+        """
+        :type nums: List[int]
+        :type val: int
+        :rtype: int
+        """
+
+        count = 0
+        for n in nums: 
+            if n != val:
+                nums[count] = n
+                count += 1
+
+        return count
+
+
+# 929. Unique Email Address
+class Solution(object):
+    def numUniqueEmails(self, emails):
+        """
+        :type emails: List[str]
+        :rtype: int
+        """
+        unique = set()
+
+        for email in emails:
+            words = email.split("@")
+            name = words[0]
+            domain = words[1]
+            for char in name:
+                if char == ".":
+                    name = "".join(words[0].split("."))
+            ind = name.find("+")
+            if ind != -1:
+                name = name[0:ind]
+            new_email = name + "@" + domain
+            unique.add(new_email)
+        
+        return len(unique)
+
+
+    # cleaner way to do this
+class Solution(object):
+    def numUniqueEmails(self, emails):
+        """
+        :type emails: List[str]
+        :rtype: int
+        """
+        unique = set()
+
+        for email in emails:
+            local, domain = email.split("@")
+            tmp = ""
+            for c in local:
+                if c == ".": 
+                    continue
+                elif c == "+": 
+                    break
+                else: 
+                    tmp += c
+            unique.add(tmp + "@" + domain)
+        
+        return len(unique)
+    
+
+# 205. Isomorphic Strings
+
+class Solution(object):
+    def isIsomorphic(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        trans = {}
+        new_str = ""
+
+        for i in range(0, len(s)):
+            trans[s[i]] = t[i]
+        
+        values = trans.values()
+
+        if len(values) != len(set(values)):
+            return False
+            # this condition checks if there are duplicate values, because sets don't allow for duplicates the length would be different
+        
+        for i in range(0, len(s)):
+            new_str += trans[s[i]]
+
+        return new_str == t
+
+    # solution without dictionary 
+class Solution(object):
+    def isIsomorphic(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        map1 = []
+        map2 = []
+        for idx in s:
+            map1.append(s.index(idx))
+        for idx in t:
+            map2.append(t.index(idx))
+        if map1 == map2:
+            return True
+        return False
+    
+    # Efficient solution 
+class Solution(object):
+    def isIsomorphic(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        zipped_set = set(zip(s, t))
+            # zip function would pair the first item of first iterator to the first item of second iterator and make tuples out of these pairs.
+            # set() would remove duplicate items from the zipped tuple.
+        return len(zipped_set) == len(set(s)) == len(set(t))
+
+
+# 605. Can Place Flowers
+class Solution(object):
+    def canPlaceFlowers(self, flowerbed, n):
+        """
+        :type flowerbed: List[int]
+        :type n: int
+        :rtype: bool
+        """
+
+        if len(flowerbed) == 1:
+            if flowerbed[0] == 0:
+                return n <= 1
+            else:
+                return 0 == n
+    
+        count = 0 
+        i = 0
+        while i < len(flowerbed):
+            if flowerbed[i] == 1:
+                i += 1
+            elif i == 0 and flowerbed[i + 1] != 1:
+                count += 1
+                i += 1
+            elif i == len(flowerbed) - 1 and flowerbed[i - 1] != 1:
+                count += 1
+                i += 1
+            elif flowerbed[i - 1] != 1 and flowerbed[i + 1] != 1:
+                count += 1
+                i += 1
+            i += 1
+        
+        return count >= n
+
+
+    # cleaner solution 
+class Solution:
+    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
+        flowerbed = [0] + flowerbed + [0]
+        
+        for i in range(1,len(flowerbed)-1):
+            if flowerbed[i] ==0 and flowerbed[i-1] !=1 and flowerbed[i+1] !=1:
+                n -= 1
+                # instead of keeping a count you can just decrease n until it is 0 or less than 0
+                flowerbed[i] =1
+                
+        return n <= 0
+            
