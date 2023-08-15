@@ -418,4 +418,71 @@ class Solution:
                 flowerbed[i] =1
                 
         return n <= 0
+
+
+# 169. Majority Element
+
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+
+        if len(nums) == 1:
+            return nums[0]
+
+        majority = len(nums)/2
+        count = {}
+
+        for n in nums:
+            if n in count:
+                count[n] += 1
+                if count[n] > majority:
+                    return n
+            else:
+                count[n] = 1
+
+
+# 496. Next Greater Element 1
+
+
+class Solution(object):
+    def nextGreaterElement(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[int]
+        """
+
+        res = []
+
+        for i, n in list(enumerate(nums1)):
+            ind = nums2.index(n)
+            flag = False
+            for i in range(ind, len(nums2)):
+                if n < nums2[i]:
+                    res.append(nums2[i])
+                    flag = True
+                    break
+            if not flag:
+                res.append(-1)
+
+                        
+        
+        return res
+
+    # O(n) Solution
+
+class Solution(object):
+    def nextGreaterElement(self, nums1, nums2):
+        map = {} # map for next greater element
+        stack = []
+        for num in nums2:
+            while stack and stack[-1] < num: # Pop elements from stack and update map with next greater element
+                map[stack.pop()] = num
+            stack.append(num) # Push current element onto stack
+        for i in range(len(nums1)): # Check if each element in nums1 has a next greater element in map
+            nums1[i] = map.get(nums1[i], -1) # Update element in nums1 with next greater element or -1
+        return nums1
             
