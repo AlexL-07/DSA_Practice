@@ -485,4 +485,149 @@ class Solution(object):
         for i in range(len(nums1)): # Check if each element in nums1 has a next greater element in map
             nums1[i] = map.get(nums1[i], -1) # Update element in nums1 with next greater element or -1
         return nums1
+
+
+# 724. Find Pivot Index
+
+# Time Complexity : O(n)
+# Space Complexity : O(1)
+class Solution(object):
+    def pivotIndex(self, nums):
+        # Initialize leftSum & rightSum to store the sum of all the numbers strictly to the index's left & right respectively...
+        leftSum, rightSum = 0, sum(nums)
+        # Traverse elements through the loop...
+        for idx, ele in enumerate(nums):
+            # enumerate(iterable, Start(not necessary)) returns a list of tuples that contains the index and element at that index (ex. [(idx, ele), (idx1, ele1)])
+                # Iterable: any object that supports iteration
+                # Start: the index value from which the counter is to be started, by default it is 0
+            rightSum -= ele
+            # If the sum of all the numbers strictly to the left of the index is equal to the sum of all the numbers strictly to the index's right...
+            if leftSum == rightSum:
+                return idx      # Return the pivot index...
+            leftSum += ele
+        return -1       # If there is no index that satisfies the conditions in the problem statement...
+
+
+# 303. Range Sum Query - Immutable
+
+
+class NumArray(object):
+
+    def __init__(self, nums):
+        """
+        :type nums: List[int]
+        """
+        self.nums = nums
+        
+
+    def sumRange(self, left, right):
+        """
+        :type left: int
+        :type right: int
+        :rtype: int
+        """
+
+        return sum(self.nums[left:right+1])
+    # Your NumArray object will be instantiated and called as such:
+    # obj = NumArray(nums)
+    # param_1 = obj.sumRange(left,right)
+
+
+# 448. Find All Numbers Disappeared in an Array
+
+
+class Solution(object):
+    def findDisappearedNumbers(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+
+        range_set = set(range(1, len(nums) + 1))
+        num_set = set(nums)
+
+        return list(range_set - num_set)
+            # you can subtract between sets to remove duplicates
+            # this gives us a new set which we can make into a list with list()
+
+
+# 1189. Maximum Number of Balloons
+
+class Solution(object):
+    def maxNumberOfBalloons(self, text):
+        """
+        :type text: str
+        :rtype: int
+        """
+        b_count = {"b":0, "a":0, "l":0, "o":0, "n":0}
+
+        for char in text:
+            if char.lower() in b_count:
+                b_count[char.lower()] += 1
+        
+
+        counter = 0
+        while b_count["b"] > 0 and b_count["a"] > 0 and b_count["l"] > 0 and b_count["o"] > 0 and b_count["n"] > 0:
+            if (b_count["b"] - 1) >= 0 and (b_count["a"] - 1) >= 0 and (b_count["l"] - 2) >= 0 and (b_count["o"] - 2) >= 0 and (b_count["n"] - 1) >= 0:
+                counter += 1
+            b_count["b"] -= 1
+            b_count["a"] -= 1
+            b_count["l"] -= 2
+            b_count["o"] -= 2
+            b_count["n"] -= 1
+                
+        
+        return counter
+
+
+    # Much better solution 
+
+class Solution(object):
+    def maxNumberOfBalloons(self, text):
+        """
+        :type text: str
+        :rtype: int
+        """
+
+        strs = ['b', 'a', 'l', 'o', 'n']
+        counts = [0] * 5
+
+        for i in range(5):
+            counts[i] = text.count(strs[i])
+        
+        counts[2] = counts[2] // 2
+        counts[3] = counts[3] // 2
+
+        return min(counts)
+    
+
+# 290. Word Pattern
+
+class Solution(object):
+    def wordPattern(self, pattern, s):
+        """
+        :type pattern: str
+        :type s: str
+        :rtype: bool
+        """
+        new_str = []
+        words = s.split()
+        dic = {}
+
+        if len(pattern) != len(words) or len(set(pattern)) != len(set(words)): 
+            return False
+        
+        for idx, c in enumerate(pattern):
+            if c in dic:  
+                if dic[c] != words[idx]: 
+                    return False  
+            else:
+                dic[c] = words[idx]
+
+            if c in dic:
+                new_str.append(dic[c])
+        
+
+        new_s = " ".join(new_str) 
+        return new_s == s 
             
