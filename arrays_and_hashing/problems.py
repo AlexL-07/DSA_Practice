@@ -629,5 +629,45 @@ class Solution(object):
         
 
         new_s = " ".join(new_str) 
-        return new_s == s 
+        return new_s == s
+
+
+# 705. Design HashSet
+
+class MyHashSet(object):
+
+    def __init__(self):
+        self.d = {}
+        
+
+    def add(self, key):
+        """
+        :type key: int
+        :rtype: None
+        """
+        self.d[key] = 1
+        
+
+    def remove(self, key):
+        """
+        :type key: int
+        :rtype: None
+        """
+        self.d[key] = 0
+        
+
+    def contains(self, key):
+        """
+        :type key: int
+        :rtype: bool
+        """
+        return self.d.get(key, 0) != 0
+        
+
+
+# Your MyHashSet object will be instantiated and called as such:
+# obj = MyHashSet()
+# obj.add(key)
+# obj.remove(key)
+# param_3 = obj.contains(key)
             
