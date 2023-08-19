@@ -716,3 +716,30 @@ class MyHashMap(object):
         # param_2 = obj.get(key)
         # obj.remove(key)
 
+
+# 919. Sort an Array
+
+
+class Solution(object):
+    def sortArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        def quickSort(nums):
+            if len(nums) <= 1:
+                return nums
+            
+            piv = random.choice(nums)
+            lt, eq, gt = [], [], []
+
+            for n in nums:
+                if n < piv:
+                    lt.append(n)
+                elif n > piv:
+                    gt.append(n)
+                else:
+                    eq.append(n)
+            
+            return quickSort(lt) + eq + quickSort(gt)
+        return quickSort(nums)
