@@ -863,3 +863,42 @@ class Solution(object):
     # If the white pointer is red (nums[white] == 0), we swap with the red pointer and move both white and red pointer forward. 
     # If the pointer is white (nums[white] == 1), the element is already in correct place, so we don't have to swap, just move the white pointer forward. 
     # If the white pointer is blue, we swap with the latest unclassified element.
+
+
+# 535. Encode and Decode TinyURL
+
+class Codec:
+    codeDB = defaultdict()
+    urlDB = defaultdict()
+    chars = string.ascii_letters + string.digits
+
+    def getCode(self):
+        code = ''.join(random.choice(self.chars) for i in range(6))
+        return "http://tinyurl.com/" + code
+
+    def encode(self, longUrl):
+        """Encodes a URL to a shortened URL.
+        
+        :type longUrl: str
+        :rtype: str
+        """
+
+        if longUrl in self.urlDB:
+            return self.urlDB[longUrl]
+        
+        code = self.getCode()
+        while code in self.codeDB:
+            code = getCode()
+        
+        self.codeDB[code] = longUrl
+        self.urlDB[longUrl] = code
+        return code
+        
+
+    def decode(self, shortUrl):
+        """Decodes a shortened URL to its original URL.
+        
+        :type shortUrl: str
+        :rtype: str
+        """
+        return self.codeDB[shortUrl]
