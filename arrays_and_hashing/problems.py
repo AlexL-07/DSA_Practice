@@ -902,3 +902,25 @@ class Codec:
         :rtype: str
         """
         return self.codeDB[shortUrl]
+
+
+# 554. Brick Wall
+
+class Solution(object):
+    def leastBricks(self, wall):
+        """
+        :type wall: List[List[int]]
+        :rtype: int
+        """
+        sumMap, maxSum = {}, 0
+
+        for i in range(len(wall)):
+            currSum = 0
+            for j in range(len(wall[i])-1):
+                currSum += wall[i][j]
+                if currSum not in sumMap:
+                    sumMap[currSum] = 0
+                sumMap[currSum] += 1
+                maxSum = max(maxSum, sumMap[currSum])
+        
+        return len(wall) - maxSum
