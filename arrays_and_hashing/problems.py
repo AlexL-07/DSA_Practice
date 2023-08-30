@@ -941,3 +941,31 @@ class Solution(object):
                 profits.append(prices[i + 1] - prices[i])
         
         return sum(profits)
+    
+
+# 560. Subarray Sum Equals K
+
+class Solution(object):
+    def subarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+
+        res = 0 
+        pref_sum = 0
+        d = {0:1}
+
+        for n in nums:
+            pref_sum = pref_sum + n
+
+            if pref_sum - k in d:
+                res = res + d[pref_sum - k]
+            
+            if pref_sum not in d:
+                d[pref_sum] = 1
+            else:
+                d[pref_sum] = d[pref_sum] + 1
+        
+        return res
