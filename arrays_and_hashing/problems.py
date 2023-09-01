@@ -969,3 +969,28 @@ class Solution(object):
                 d[pref_sum] = d[pref_sum] + 1
         
         return res
+
+
+# 1930. Unique Length-3 Palindromic Subsequences
+class Solution(object):
+    def countPalindromicSubsequence(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+
+        d = {}
+
+        for i, c in enumerate(s):
+            if c not in d:
+                d[c] = [i, i]
+            else:
+                d[c][1] = i
+        
+
+        res = 0
+
+        for c, (start_idx, end_idx) in d.items():
+            res += len(set(s[start_idx + 1:end_idx]))
+
+        return res
