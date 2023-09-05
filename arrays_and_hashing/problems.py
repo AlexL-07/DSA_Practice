@@ -1008,3 +1008,24 @@ class Solution:
                     count -= 1
         return (count + 1) // 2
        
+
+# 2001. Number of Pairs of Interchangeable Rectangles
+class Solution(object):
+    def interchangeableRectangles(self, rectangles):
+        """
+        :type rectangles: List[List[int]]
+        :rtype: int
+        """
+
+        # map to track ratio counts
+        ratio_map = {}
+        total = 0
+        for rect in rectangles:
+            ratio = float(rect[0]) / float(rect[1])
+            ratio_map[ratio] = ratio_map.get(ratio, 0) + 1
+        
+        # we are looking at PAIRs not PERMUTATIONs so we don't use factorial
+        for k, v in ratio_map.items():
+            total += (v * (v - 1)) // 2
+        
+        return total
