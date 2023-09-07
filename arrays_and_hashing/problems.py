@@ -1101,3 +1101,40 @@ class Solution(object):
             return -1
         else:
             return 0
+
+# 2215. Find the Difference of Two Arrays
+class Solution(object):
+    def findDifference(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[List[int]]
+        """
+
+        res = []
+        res1 = set()
+        res2 = set()
+
+        for n in nums1:
+            if n not in nums2:
+                res1.add(n)
+        
+        for n in nums2:
+            if n not in nums1:
+                res2.add(n)
+
+        res.append(list(res1))
+        res.append(list(res2))
+        
+        return res
+
+    # one liner
+class Solution(object):
+    def findDifference(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[List[int]]
+        """
+
+        return [set(nums1) - set(nums2), set(nums2) - set(nums1)]
