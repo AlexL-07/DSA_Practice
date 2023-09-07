@@ -1057,3 +1057,28 @@ class Solution(object):
                 result = max(result, len1 * len2)
         
         return result
+
+# 28. Find the Index of the First Occurence in a String
+
+class Solution(object):
+    def strStr(self, haystack, needle):
+        """
+        :type haystack: str
+        :type needle: str
+        :rtype: int
+        """
+        for i in range(len(haystack) - len(needle) + 1):
+            if haystack[i:i + len(needle)] == needle:
+                return i
+        
+        return -1
+
+# using built in python method (slightly slower)
+class Solution(object):
+    def strStr(self, haystack, needle):
+        """
+        :type haystack: str
+        :type needle: str
+        :rtype: int
+        """
+        return haystack.find(needle)
