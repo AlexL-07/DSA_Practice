@@ -1138,3 +1138,37 @@ class Solution(object):
         """
 
         return [set(nums1) - set(nums2), set(nums2) - set(nums1)]
+
+# 1603. Design Parking System
+class ParkingSystem(object):
+
+    __slot__ = ['_parking']
+
+    def __init__(self, big, medium, small):
+        """
+        :type big: int
+        :type medium: int
+        :type small: int
+        """
+        self._parking = {
+            1: big,
+            2: medium,
+            3: small
+        }
+        
+
+    def addCar(self, carType):
+        """
+        :type carType: int
+        :rtype: bool
+        """
+        available_spots = self._parking[carType]
+        if available_spots:
+            self._parking[carType] = available_spots - 1
+            return True
+        
+
+
+# Your ParkingSystem object will be instantiated and called as such:
+# obj = ParkingSystem(big, medium, small)
+# param_1 = obj.addCar(carType)
