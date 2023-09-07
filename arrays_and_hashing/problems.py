@@ -1082,3 +1082,22 @@ class Solution(object):
         :rtype: int
         """
         return haystack.find(needle)
+    
+# 1822. Sign of the Product of an Array
+class Solution(object):
+    def arraySign(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        prod = 1
+
+        for n in nums:
+            prod *= n
+
+        if prod > 0:
+            return 1
+        elif prod < 0:
+            return -1
+        else:
+            return 0
