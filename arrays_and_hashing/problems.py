@@ -1285,3 +1285,27 @@ class Solution(object):
             l += 1
         nums[low], nums[r] = nums[r], nums[low]
         return low
+
+# 523. Continuous Subarray Sum
+class Solution(object):
+    def checkSubarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+
+        dic = {0: -1}
+        s = 0
+
+        for i, n in enumerate(nums):
+            s = (s + n) % k
+
+            if s not in dic:
+                dic[s] = i
+            else:
+                if i - dic[s] >= 2:
+                    return True
+        
+        return False
+    # https://leetcode.com/problems/continuous-subarray-sum/solutions/1929464/greatly-explained-hashmap-prefixsum-in-python-time-o-n-space-o-min-n-k-easy-to-understand/
