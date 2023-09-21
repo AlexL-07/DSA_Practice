@@ -1219,9 +1219,9 @@ class Solution(object):
 
     # selection sort
     def largestNumber3(self, nums):
-        for i in xrange(len(nums), 0, -1):
+        for i in range(len(nums), 0, -1):
             tmp = 0
-            for j in xrange(i):
+            for j in range(i):
                 if not self.compare(nums[j], nums[tmp]):
                     tmp = j
             nums[tmp], nums[i-1] = nums[i-1], nums[tmp]
@@ -1229,7 +1229,7 @@ class Solution(object):
 
     # insertion sort
     def largestNumber4(self, nums):
-        for i in xrange(len(nums)):
+        for i in range(len(nums)):
             pos, cur = i, nums[i]
             while pos > 0 and not self.compare(nums[pos-1], cur):
                 nums[pos] = nums[pos-1]  # move one-step forward
