@@ -53,3 +53,32 @@ class Solution(object):
             res = min(res, nums[i] - nums[i - k + 1])
         
         return res
+
+# 1768. Merge String Alternatively
+class Solution(object):
+    def mergeAlternately(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: str
+        """
+        newStr = ""
+
+        leng = len(word1)
+        leng2 = len(word2)
+        longest = word1
+        x = 0
+
+        if len(word2) > len(word1):
+            leng = len(word2)
+            leng2 = len(word1)
+            longest = word2
+        
+        for i in range(leng2):
+            newStr += word1[i]
+            newStr += word2[i]
+            x = i
+        
+        newStr += longest[i+1:]
+        
+        return newStr
