@@ -67,7 +67,7 @@ class Solution(object):
         leng = len(word1)
         leng2 = len(word2)
         longest = word1
-        x = 0
+        # x = 0
 
         if len(word2) > len(word1):
             leng = len(word2)
@@ -77,8 +77,24 @@ class Solution(object):
         for i in range(leng2):
             newStr += word1[i]
             newStr += word2[i]
-            x = i
+            # x = i
         
         newStr += longest[i+1:]
+            # I guess the variable i saves itself as max number of the passed in range even outside the loop 
         
         return newStr
+
+    # Better solution
+class Solution(object):
+    def mergeAlternately(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: str
+        """
+        newStr = ""
+
+        for i in range(min(len(word1), len(word2))):
+            newStr += word1[i] + word2[i]
+        
+        return newStr + word1[i+1:] + word2[i+1:]
