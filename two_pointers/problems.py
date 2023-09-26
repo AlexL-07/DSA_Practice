@@ -34,3 +34,22 @@ class Solution(object):
             t = t - 1
         
         return True
+
+# 1984. Minimum Difference Between Highest and Lowest of K Scores
+class Solution(object):
+    def minimumDifference(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        if len(nums) <= 1:
+            return 0
+        
+        nums.sort()
+        res = nums[k - 1] - nums[0]
+
+        for i in range(k, len(nums)):
+            res = min(res, nums[i] - nums[i - k + 1])
+        
+        return res
