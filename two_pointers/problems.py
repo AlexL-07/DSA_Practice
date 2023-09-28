@@ -164,8 +164,8 @@ class Solution(object):
 # 26. Remove Duplicates from Sorted Array
 class Solution(object):
     def removeDuplicates(self, nums):
-        nums[:] = sorted(set(nums))
-        return len(nums)
+        nums[:] = sorted(set(nums))     # nums[:] = replaces element in place
+        return len(nums)                # nums =  doesn't replace elements in the original list.
 
     # using two pointers, much slower
 class Solution(object):
