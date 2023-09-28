@@ -159,3 +159,30 @@ class Solution(object):
                 orig -= 1
             else:
                 i += 1
+
+
+# 26. Remove Duplicates from Sorted Array
+class Solution(object):
+    def removeDuplicates(self, nums):
+        nums[:] = sorted(set(nums))
+        return len(nums)
+
+    # using two pointers, much slower
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        first = 0
+        second = 1
+
+        while second in range(len(nums)):
+            if nums[first] == nums[second]:
+                second += 1
+            else:
+                nums[first + 1] = nums[second]
+                second += 1
+                first += 1
+        
+        return first + 1
