@@ -200,3 +200,21 @@ class Solution(object):
                 nums[k] = i
                 k += 1
         return k       # Return k after placing the final result in the first k slots of nums...
+
+# 167. Two Sum II - Input Array Is Sorted
+class Solution(object):
+    def twoSum(self, numbers, target):
+        """
+        :type numbers: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+
+        diffs = {}
+
+        for i, n in enumerate(numbers):
+            diff = target - n
+            if diff in diffs:
+                return [diffs[diff], i + 1]
+            else: 
+                diffs[n] = i + 1
