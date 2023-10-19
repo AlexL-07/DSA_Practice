@@ -319,7 +319,7 @@ class Solution(object):
 
         while first < last:
             width = last - first
-            if height[first] > height[last]:
+            if height[first] >= height[last]: # by adding >= here instead of > we can get rid of the else condition
                 area = height[last] * width
                 areas.append(area)
                 last -= 1
@@ -327,9 +327,9 @@ class Solution(object):
                 area = height[first] * width
                 areas.append(area)
                 first += 1
-            else:
-                area = height[first] * width 
-                areas.append(area)
-                last -= 1
+            # else:
+            #     area = height[first] * width 
+            #     areas.append(area)
+            #     last -= 1
 
-        return max(areas) 
+        return max(areas)
