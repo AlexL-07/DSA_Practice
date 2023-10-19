@@ -304,3 +304,32 @@ class Solution(object):
                if i == 0 or (i>0 and nums[i] != nums[i-1]):
                    self.findNSum(nums[i+1:], target-nums[i], N-1, prefix+[nums[i]], result)
        return
+
+# 11. Container With Most Water
+class Solution(object):
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+
+        areas = []
+        first = 0
+        last = len(height) - 1
+
+        while first < last:
+            width = last - first
+            if height[first] > height[last]:
+                area = height[last] * width
+                areas.append(area)
+                last -= 1
+            elif height[first] < height[last]:
+                area = height[first] * width
+                areas.append(area)
+                first += 1
+            else:
+                area = height[first] * width 
+                areas.append(area)
+                last -= 1
+
+        return max(areas) 
