@@ -333,3 +333,26 @@ class Solution(object):
             #     last -= 1
 
         return max(areas)
+
+# 1498. Number of Subsequences That Satify the Given Sum Condition
+class Solution(object):
+    def numSubseq(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        i = 0
+        j = len(nums) - 1
+        c = 0
+        mod = (10 ** 9 + 7)
+        nums.sort()
+
+        while i <= j:
+            if nums[i] + nums[j] <= target:
+                c += pow(2, (j - i), mod)
+                i += 1
+            else:
+                j -= 1
+        
+        return c % mod
