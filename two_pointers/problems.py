@@ -350,7 +350,10 @@ class Solution(object):
 
         while i <= j:
             if nums[i] + nums[j] <= target:
-                c += pow(2, (j - i), mod)
+                c += pow(2, (j - i), mod)   # The pow(number, power, modulus(optional)) method takes three parameters:
+                                                # number- the base value that is raised to a certain power
+                                                # power - the exponent value that raises number
+                                                # modulus - (optional) divides the result of number paused to a power and finds the remainder: number^power% modulus
                 i += 1
             else:
                 j -= 1
