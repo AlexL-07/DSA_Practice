@@ -403,3 +403,22 @@ class Solution(object):
             k -= 1
         
         return nums
+
+# 1968. Array With Elements Not Equal to Average of Neighbors
+class Solution(object):
+    def rearrangeArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        for i in range(1, len(nums) - 1): # Loop over the array
+            p = nums[i - 1]
+            c = nums[i]
+            n = nums[i + 1]
+
+            if (p < c < n) or (p > c > n):      # Check an element
+                nums[i+1], nums[i] = nums[i], nums[i+1] # if the current element with its previous element and the next element combine a decrement or increment. We will swap the current element and after element.
+        
+        return nums
+    
+    
