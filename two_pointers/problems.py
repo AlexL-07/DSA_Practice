@@ -420,5 +420,61 @@ class Solution(object):
                 nums[i+1], nums[i] = nums[i], nums[i+1] # if the current element with its previous element and the next element combine a decrement or increment. We will swap the current element and after element.
         
         return nums
+
+# 881. Boats to Save People
+    # my very slow solution
+class Solution(object):
+    def numRescueBoats(self, people, limit):
+        """
+        :type people: List[int]
+        :type limit: int
+        :rtype: int
+        """
+        people.sort()
+        count = 0
+
+        f, l = 0, len(people) - 1
+
+        while f < l:
+            if people[l] == limit:
+                count += 1
+                people[l] = limit + 1
+                l -= 1
+            elif people[f] + people[l] <= limit:
+                count += 1
+                people[f] = limit + 1
+                people[l] = limit + 1
+                f += 1
+                l -= 1
+            else:
+                l -= 1
+        
+        last = 0
+        for p in people:
+            if p <= limit:
+                last += 1
+
+        return count + last
+
+    # leetcode solution 
+class Solution(object):
+    def numRescueBoats(self, people, limit):
+        """
+        :type people: List[int]
+        :type limit: int
+        :rtype: int
+        """
+        people.sort()
+        count = 0
+
+        f, l = 0, len(people) - 1
+
+        while f <= l:
+            if people[f] + people[l] <= limit:
+                f += 1
+            l -= 1
+            count += 1
+        
+        return count 
     
     
