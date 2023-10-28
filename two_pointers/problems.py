@@ -476,5 +476,40 @@ class Solution(object):
             count += 1
         
         return count 
+
+# 42. Trapping Rain Water
+class Solution(object):
+    def trap(self, height):
+        if not height or len(height) < 3:
+            return 0
+        
+        volume = 0
+
+        l = 0
+        r = len(height) - 1
+        l_max = height[l]
+        r_max = height[r]
+
+        while l < r:
+            l_max = max(height[l], l_max)
+            r_max = max(height[r], r_max)
+
+            if l_max <= r_max:
+                volume += l_max - height[l]
+                l += 1
+            else:
+                volume += r_max - height[r]
+                r -= 1
+        
+        return volume
+
+    #For index i, the water volume of i: vol_i = min(left_max_i, right_max_i) - bar_i.
+    
+    # The left_max array from left to right is always non-descending, the right_max is non-ascending.
+    
+    # Having such observation, we can say:
+    
+    # Given i < j, if left_max_i <= right_max_j: vol_i = left_max_i - bar_i, otherwise, vol_j = right_max_j - bar_j
+    # because, if left_max_i <= right_max_j: left_max_i <= right_max_j <= right_max_j-1 <= ... <= right_max_i, then min(left_max_i, right_max_i) is always left_max_i
     
     
