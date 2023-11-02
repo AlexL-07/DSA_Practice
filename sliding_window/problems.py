@@ -60,4 +60,51 @@ class Solution(object):
             s -= arr[i - k + 1]
         
         return res
+
+# 3. Longest Substring Without Repeating Characters
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+
+        if len(s) == 0:
+            return 0
+        
+        lengths = [1] # this is the minimum length possible for this problem, it's ok to initiate the res array with this 
+        sub = ""
+
+        i = 0
+
+        while i < len(s):
+            if s[i] not in sub:
+                sub += s[i]
+                lengths.append(len(sub))
+                i += 1
+            else:
+                i = i - len(sub) + 1
+                sub = ""
+        
+        return max(lengths)
+
+    # Better solution using a dictionary to store seen and its index
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+
+        left = 0 
+        seen = {}
+        output = 0
+
+        for right, curr in enumerate(s):
+            if curr in seen:
+                left = max(left, seen[curr] + 1)
+            output = max(output, right - left + 1)
+            seen[curr] = right
+        
+        return output
         
