@@ -129,4 +129,23 @@ def characterReplacement(self, s: str, k: int) -> int:
                 l += 1
                
         return maxlen
+
+# 567. Permutation in String
+class Solution(object):
+    def checkInclusion(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: bool
+        """
+        from collections import Counter
+        window = len(s1)
+        s1_c = Counter(s1) # makes a hashmap that counts the characters
+
+        for i in range(len(s2) - window + 1):
+            s2_c = Counter(s2[i:i+window])
+            if s2_c == s1_c:
+                return True
+        
+        return False
         
