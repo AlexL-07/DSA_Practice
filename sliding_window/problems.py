@@ -125,7 +125,7 @@ def characterReplacement(self, s: str, k: int) -> int:
             if cur_len - max(freq.values()) <= k:  # if we have replaced <= K letters, record a new maxLen
                 maxlen = max(maxlen, cur_len)
             else:                               # if we have replaced > K letters, then it's time to slide the window
-                freq[s[l]] -= 1                 # decrement frequency of char at left pointer, then increment pointer asda
+                freq[s[l]] -= 1                 # decrement frequency of char at left pointer, then increment pointer asda45151
                 l += 1
                
         return maxlen
