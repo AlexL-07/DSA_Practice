@@ -140,7 +140,7 @@ class Solution(object):
         """
         from collections import Counter
         window = len(s1)
-        s1_c = Counter(s1) # makes a hashmap that counts the characters
+        s1_c = Counter(s1) # makes a hashmap that counts the characters asdasd
 
         for i in range(len(s2) - window + 1):
             s2_c = Counter(s2[i:i+window])
