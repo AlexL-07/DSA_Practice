@@ -148,4 +148,31 @@ class Solution(object):
                 return True
         
         return False
+    
+# 1838. Frequency of the Most Frequent Element
+def maxFrequency(self, nums, k):
+        maxFreq = 0
+        
+        # Sort the numbers first
+        nums.sort()
+        
+        i,j = 0,0
+        currSum = 0
+        while j < len(nums):
+            currSum += nums[j]
+			# Since the array is sorted
+            # The largest number for any window at any time is the current/jth element
+            # So we want to know how many moves will it take to make all elements of this window = j
+            # If each element becomes j, that means total sum will be nums[j] * number of elements in window
+            # And we want that to be either less than or equal to sum of this window + moves we have
+			# Because number of moves means how many we can add to a window so that each element is the same
+            while nums[j] * (j - i + 1) > currSum + k: 
+                currSum -= nums[i]
+                i += 1
+            
+            # If we are here, that means, this is a valid window
+            maxFreq = max(maxFreq, j - i + 1)
+            j += 1
+            
+        return maxFreq
         
