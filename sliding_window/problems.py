@@ -165,7 +165,7 @@ def maxFrequency(self, nums, k):
             # So we want to know how many moves will it take to make all elements of this window = j
             # If each element becomes j, that means total sum will be nums[j] * number of elements in window
             # And we want that to be either less than or equal to sum of this window + moves we have
-			# Because number of moves means how many we can add to a window so that each element is the same ...2032366512111111111111414511226521
+			# Because number of moves means how many we can add to a window so that each element is the same ...20323665121111111111111414511226521
             while nums[j] * (j - i + 1) > currSum + k: 
                 currSum -= nums[i]
                 i += 1
