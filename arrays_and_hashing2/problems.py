@@ -29,3 +29,20 @@ class Solution(object):
             dic2[c] = dic2.get(c, 0) + 1
         
         return dic1 == dic2
+    
+# 1. Two Sum
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        count = {}
+
+        for i,n in enumerate(nums):
+            diff = target - n
+            if n in count.keys():
+                return [count[n], i]
+            else:
+                count[diff] = i
