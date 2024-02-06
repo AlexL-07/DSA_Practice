@@ -199,4 +199,20 @@ class Solution(object):
         return ans
     
 # 49. Group Anagrams
+class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        res = {}
+
+        for str in strs:
+            sorted_string = "".join(sorted(str))
+            if sorted_string not in res:
+                res[sorted_string] = []
+            
+            res[sorted_string].append(str)
+        
+        return list(res.values())
         
