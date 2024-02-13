@@ -97,4 +97,12 @@ class Solution(object):
 
         return [arr[x] for x in range(0, k)]
 
-# 221.
+# 1929. Concatenation of Array
+class Solution(object):
+    def getConcatenation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        return nums + nums
+
