@@ -106,3 +106,43 @@ class Solution(object):
         """
         return nums + nums
 
+# 1299. Replace Elements with Greatest Element on Right Side
+    # Timed out on a very large test case 
+class Solution(object):
+    def replaceElements(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: List[int]
+        """
+        if len(arr) == 1:
+            return [-1]
+        
+        res = []
+
+        for i in range(len(arr)):
+            if i < len(arr) - 2:
+                m = max(arr[i+1:])
+                res.append(m)
+            elif i == len(arr) - 2:
+                res.append(arr[i + 1])
+        
+        res.append(-1)
+        return res
+
+class Solution(object):
+    def replaceElements(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: List[int]
+        """
+        m = -1
+        i = len(arr) - 1
+        while i >= 0:
+            temp = arr[i]
+            arr[i] = m
+            if temp > m:
+                m = temp
+            i -= 1
+        
+        return arr
+
