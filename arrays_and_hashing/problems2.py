@@ -223,3 +223,14 @@ class Solution(object):
             max_con = max(max_con, last - first + 1)
         
         return max_con
+
+# 58. Length of Last Word
+class Solution(object):
+    def lengthOfLastWord(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+
+        words = s.split()
+        return len(words[-1])
