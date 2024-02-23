@@ -168,3 +168,5 @@ class Solution(object):
             tmp *= nums[i]
         
         return res
+
+# 123.
