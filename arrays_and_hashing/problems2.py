@@ -283,4 +283,6 @@ class Solution(object):
                 nums[count] = n
                 count += 1
         
-        return count    
+        return count   
+
+# 12345 
