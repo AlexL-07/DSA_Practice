@@ -285,4 +285,25 @@ class Solution(object):
         
         return count   
 
-# 12345 
+# 169. Majority Element
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) == 1:
+            return nums[0]
+
+        majority = len(nums)/2
+        nums.sort()
+        count = 0
+
+        for n in nums:
+            curr = n
+            if curr == n:
+                count += 1
+                if count > majority:
+                    return curr
+            else:
+                count = 1 
