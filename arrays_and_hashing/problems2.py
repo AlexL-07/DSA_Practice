@@ -307,3 +307,18 @@ class Solution(object):
                     return curr
             else:
                 count = 1 
+
+# 66. Plus One
+class Solution(object):
+    def plusOne(self, digits):
+        """
+        :type digits: List[int]
+        :rtype: List[int]
+        """
+        s = [str(i) for i in digits]
+        res = int(''.join(s))
+        res += 1
+        st = str(res)
+        sol = [int(i) for i in st]
+        
+        return sol
