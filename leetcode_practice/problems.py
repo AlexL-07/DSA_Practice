@@ -39,3 +39,24 @@ class Solution(object):
                 return True
         
         return False 
+
+# 342. Power of Four
+class Solution(object):
+    def isPowerOfFour(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        if n == 1 or n == 4:
+            return True
+        
+        if n % 4 != 0:
+            return False
+
+        temp = 4
+        while temp < n:
+            temp *= 4
+            if n == temp:
+                return True
+        
+        return False
