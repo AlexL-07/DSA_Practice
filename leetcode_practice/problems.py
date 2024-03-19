@@ -72,3 +72,24 @@ class Solution(object):
             num = (num % 10) + (num // 10)
         
         return num
+
+# 70. Climbing Stairs
+    # using the pull dynamic programing(DP) technique
+class Solution(object):
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n <= 2:
+            return n
+        
+        step1 = 1
+        step2 = 2
+        x = 0
+        for i in range(2, n):
+            x = step1 + step2
+            step1 = step2
+            step2 = x
+        
+        return x
