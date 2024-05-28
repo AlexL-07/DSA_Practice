@@ -60,4 +60,21 @@ class Solution(object):
         
         return self.gcdOfStrings(str1, str2[len(str1):])
          #   If the length of str2 is greater than the length of str1, it means that str2 contains str1 as a prefix. In this case, we recurse with the substring of str2 after removing (slicing) the prefix that matches str1.
-    
+
+# 1431. Kids With the Greatest Number of Candies
+class Solution(object):
+    def kidsWithCandies(self, candies, extraCandies):
+        """
+        :type candies: List[int]
+        :type extraCandies: int
+        :rtype: List[bool]
+        """
+        maxCandy = max(candies)
+        res = []
+        for n in candies:
+            if n + extraCandies >= maxCandy:
+                res.append(True)
+            else:
+                res.append(False)
+        
+        return res
