@@ -136,3 +136,14 @@ class Solution(object):
             end -= 1
         
         return "".join(word)
+
+# 151. Reverse Words in a String
+class Solution(object):
+    def reverseWords(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        words = s.split()
+        r_words = list(reversed(words))
+        return " ".join(r_words)
