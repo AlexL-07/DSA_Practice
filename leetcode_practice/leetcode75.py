@@ -147,3 +147,28 @@ class Solution(object):
         words = s.split()
         r_words = list(reversed(words))
         return " ".join(r_words)
+
+
+
+# 238. Product of Array Except Self
+class Solution(object):
+    def productExceptSelf(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        
+        res = []
+
+        tmp = 1
+
+        for n in nums:
+            res.append(tmp)
+            tmp *= n
+        
+        tmp = 1
+        for i in reversed(range(len(nums))):
+            res[i] *= tmp
+            tmp *= nums[i]
+        
+        return res
