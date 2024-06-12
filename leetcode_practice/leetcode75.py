@@ -172,3 +172,23 @@ class Solution(object):
             tmp *= nums[i]
         
         return res
+
+# 334. Increasing Triplet Subsequence
+class Solution(object):
+    def increasingTriplet(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        first = float('inf') 
+        second = float('inf')
+            # float('inf') acts as an unbounded upper value for comparison. 
+            # This is useful for finding lowest values for something 
+        for n in nums:
+            if n <= first:
+                first = n
+            elif n <= second:
+                second = n
+            else:
+                return True
+        return False
