@@ -238,3 +238,22 @@ class Solution(object):
                 anchor = pos + 1
 
         return write
+
+# 283. Move Zeroes
+class Solution(object):
+    def moveZeroes(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+
+        orig = len(nums)
+        i = 0
+
+        while i < orig:
+            if nums[i] == 0:
+                del nums[i]
+                nums.append(0)
+                orig -= 1
+            else:
+                i += 1
