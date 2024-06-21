@@ -325,3 +325,25 @@ class Solution(object):
                 f += 1
         
         return count 
+
+# 643. Maximum Average Subarray I
+class Solution(object):
+    def findMaxAverage(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: float
+        """
+        
+        maxSum = windowSum = float(sum(nums[:k]))
+        # gets the first windowSum and sets the maxSum to this first windowSum
+
+        for i in range(k, len(nums)):
+            windowSum += nums[i] 
+            # adds in the number following the last number from the initial window sum
+            windowSum -= nums[i - k]
+            # subtracts the first number from the initial and subsequent window sums
+            maxSum = max(windowSum, maxSum)
+            # compares and sets the maxSum by comparing the current windowSum to the running maxSum
+
+        return maxSum/k
