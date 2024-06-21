@@ -300,3 +300,28 @@ class Solution(object):
                 f += 1
 
         return max(areas) 
+
+# 1679. Max Number of K-Sum Pairs
+class Solution(object):
+    def maxOperations(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        count = 0
+        f = 0
+        n = len(nums) - 1
+        sort_nums = sorted(nums)
+
+        while f < n:
+            if sort_nums[f] + sort_nums[n] == k:
+                count += 1
+                f += 1
+                n -= 1
+            elif sort_nums[f] + sort_nums[n] > k:
+                n -= 1
+            elif sort_nums[f] + sort_nums[n] < k:
+                f += 1
+        
+        return count 
