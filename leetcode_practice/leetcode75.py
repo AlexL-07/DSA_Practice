@@ -396,3 +396,65 @@ class Solution(object):
             res = max(res, currCount)
 
         return res
+
+# 1004. Max Consecutive Ones III
+class Solution(object):
+    def longestOnes(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        s = 0
+        e = 0
+        r = 0
+        zero_count = 0
+
+        while e < len(nums):
+            if nums[e] == 1:
+                e += 1
+                r = max(r, e - s)
+            else:
+                if zero_count < k:
+                    e += 1
+                    zero_count += 1
+                    r = max(r, e - s)
+                else:
+                    while s <= e and zero_count >= k:
+                        if nums[s] == 0:
+                            zero_count -= 1
+                        s += 1
+        
+        return r
+
+# 1493. Longest Subarray of 1's After Deleting One Element
+class Solution(object):
+    def longestSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if 0 not in nums:
+            return len(nums) - 1
+        
+        s = 0
+        e = 0
+        r = 0
+        z_count = 0
+
+        while e < len(nums):
+            if nums[e] == 1:
+                e += 1
+                r = max(r, e - s)
+            else:
+                if z_count == 0:
+                    z_count += 1
+                    e += 1
+                    r = max(r, e - s)
+                else:
+                    while s <= e and z_count > 0:
+                        if nums[s] == 0:
+                            z_count -= 1
+                        s += 1
+        
+        return r - 1 
