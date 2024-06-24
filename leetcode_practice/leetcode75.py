@@ -347,3 +347,52 @@ class Solution(object):
             # compares and sets the maxSum by comparing the current windowSum to the running maxSum
 
         return maxSum/k
+
+# 456. Maximum Number of Vowels in a Substring of Given Length
+class Solution(object):
+    def maxVowels(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        vowels = ['a', 'e', 'i', 'o', 'u']
+        f = 0
+        n = k
+        maxLength = 0
+
+        while n <= len(s):
+            sub = s[f:n]
+            count = sum(sub.count(vowel) for vowel in vowels)
+            maxLength = max(count, maxLength)
+            f += 1
+            n += 1
+        
+        
+        return maxLength
+
+    # WAY MORE EFFICIENT SOLUTION
+class Solution(object):
+    def maxVowels(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        vowels = set('aeiou')
+        currCount = 0
+
+        for i in range(k):
+            if s[i] in vowels:
+                currCount += 1
+        
+        res = currCount
+
+        for i in range(k, len(s)):
+            if s[i] in vowels:
+                currCount += 1
+            if s[i-k] in vowels:
+                currCount -= 1
+            res = max(res, currCount)
+
+        return res
