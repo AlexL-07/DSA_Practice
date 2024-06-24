@@ -371,7 +371,7 @@ class Solution(object):
         
         return maxLength
 
-    # WAY MORE EFFICIENT SOLUTION
+    # WAY MORE EFFICIENT SOLUTION 100x
 class Solution(object):
     def maxVowels(self, s, k):
         """
