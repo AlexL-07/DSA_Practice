@@ -488,3 +488,21 @@ class Solution(object):
             max_alt = max(alt, max_alt)
         
         return max_alt
+
+# 724. Find Pivot Index
+class Solution(object):
+    def pivotIndex(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        leftSum = 0
+        rightSum = sum(nums)
+
+        for i, n in enumerate(nums):
+            rightSum -= n
+            if leftSum == rightSum:
+                return i
+            leftSum += n
+        
+        return -1 
