@@ -517,3 +517,24 @@ class Solution(object):
         """
 
         return [set(nums1) - set(nums2), set(nums2) - set(nums1)]
+
+# 1207. Unique Number of Occurences
+class Solution(object):
+    def uniqueOccurrences(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: bool
+        """
+        count = {}
+
+        for n in arr:
+            count[n] = count.get(n, 0) + 1
+
+        unique = []
+        
+        for v in count.values():
+            if v in unique:
+                return False
+            unique.append(v)
+        
+        return True
