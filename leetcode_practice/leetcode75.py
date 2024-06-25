@@ -458,3 +458,33 @@ class Solution(object):
                         s += 1
         
         return r - 1 
+
+# 1732. Find the Highest Altitude
+class Solution(object):
+    def largestAltitude(self, gain):
+        """
+        :type gain: List[int]
+        :rtype: int
+        """
+        alts = [0]
+
+        for g in gain:
+            new_alt = alts[-1] + g
+            alts.append(new_alt)
+        
+        return max(alts)
+
+class Solution(object):
+    def largestAltitude(self, gain):
+        """
+        :type gain: List[int]
+        :rtype: int
+        """
+        alt = 0
+        max_alt = 0
+
+        for g in gain:
+            alt += g
+            max_alt = max(alt, max_alt)
+        
+        return max_alt
