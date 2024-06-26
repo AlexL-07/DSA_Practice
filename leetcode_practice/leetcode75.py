@@ -538,3 +538,23 @@ class Solution(object):
             unique.append(v)
         
         return True
+
+# 1657. Determine if Two Strings Are Close
+class Solution(object):
+    def closeStrings(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: bool
+        """
+        hash1 = {}
+        hash2 = {}
+
+        for w in word1:
+            hash1[w] = hash1.get(w, 0) + 1
+
+        for w in word2:
+            hash2[w] = hash2.get(w, 0) + 1
+        
+
+        return sorted(hash1.keys()) == sorted(hash2.keys()) and sorted(hash1.values()) == sorted(hash2.values())
