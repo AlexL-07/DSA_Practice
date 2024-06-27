@@ -1,4 +1,8 @@
 # 1768. Merge Strings Alternatively
+from collections import defaultdict
+# have to import defaultdict to use it here I guess
+
+
 class Solution(object):
     def mergeAlternately(self, word1, word2):
         """
@@ -558,3 +562,26 @@ class Solution(object):
         
 
         return sorted(hash1.keys()) == sorted(hash2.keys()) and sorted(hash1.values()) == sorted(hash2.values())
+
+# 2352. Equal Row and Column Pairs
+class Solution(object):
+    def equalPairs(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        n = len(grid)
+        hashMap = defaultdict(int)
+            # sets the default value to zero for a hashmap when initialized using defaultdict(int)
+
+        for row in grid:
+            rowStr = str(row)
+            hashMap[rowStr] += 1
+        
+        count = 0
+        for j in range(n):
+            col = [grid[i][j] for i in range(n)]
+            colStr = str(col)
+            count += hashMap[colStr]
+        
+        return count
