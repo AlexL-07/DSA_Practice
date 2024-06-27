@@ -603,3 +603,21 @@ class Solution(object):
 
         # Convert the stack to a string and return it as the output
         return ''.join(stack)
+
+    # Same concept but faster
+class Solution(object):
+    def removeStars(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+
+        stack = []
+
+        for c in s:
+            if c != '*':
+                stack.append(c)
+            elif stack:
+                stack.pop()
+        
+        return ''.join(stack)
