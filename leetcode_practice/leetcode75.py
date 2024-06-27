@@ -621,3 +621,26 @@ class Solution(object):
                 stack.pop()
         
         return ''.join(stack)
+
+# 735. Asteroid Collision
+class Solution(object):
+    def asteroidCollision(self, asteroids):
+        """
+        :type asteroids: List[int]
+        :rtype: List[int]
+        """
+        stack = []
+
+        for a in asteroids:
+            while stack and stack[-1] > 0 > a:
+                if stack[-1] + a < 0:
+                    stack.pop()
+                elif stack[-1] + a > 0:
+                    break
+                else: # when stack[-1] == a
+                    stack.pop()
+                    break
+            else:
+                stack.append(a)
+        
+        return stack
