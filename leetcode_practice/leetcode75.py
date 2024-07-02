@@ -708,7 +708,7 @@ class RecentCounter(object):
 # 649. Dota2 Senate
 class Solution:
     def predictPartyVictory(self, senate: str) -> str:
-
+        n = len(senate)
         # Senator in Radiant
         R_queue = deque(i for i, x in enumerate(senate) if x == 'R')
         # Senator in Dire
@@ -716,16 +716,17 @@ class Solution:
         
         # Keep playing if both sides still have senator
         while R_queue and D_queue:
-            r, d = R_queue.popleft(), D_queue.popleft()
+            r = R_queue.popleft()
+            d = D_queue.popleft()
 
             if r < d:
                 # First Radiant bans another one in Dire
                 # Radiant wins at this round
-                R_queue.append( (r + len(senate) ) )
+                R_queue.append(r + n)
             else:
                 # First Dire bans another one in Radiant
                 # Dire wins at this round
-                D_queue.append( (d + len(senate) ) )
+                D_queue.append(d + n)
         
 
         if R_queue:
