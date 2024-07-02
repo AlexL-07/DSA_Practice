@@ -704,6 +704,38 @@ class RecentCounter(object):
 # Your RecentCounter object will be instantiated and called as such:
 # obj = RecentCounter()
 # param_1 = obj.ping(t)
+
+# 649. Dota2 Senate
+class Solution:
+    def predictPartyVictory(self, senate: str) -> str:
+
+        # Senator in Radiant
+        R_queue = deque(i for i, x in enumerate(senate) if x == 'R')
+        # Senator in Dire
+        D_queue = deque(i for i, x in enumerate(senate) if x == 'D')
+        
+        # Keep playing if both sides still have senator
+        while R_queue and D_queue:
+            r, d = R_queue.popleft(), D_queue.popleft()
+
+            if r < d:
+                # First Radiant bans another one in Dire
+                # Radiant wins at this round
+                R_queue.append( (r + len(senate) ) )
+            else:
+                # First Dire bans another one in Radiant
+                # Dire wins at this round
+                D_queue.append( (d + len(senate) ) )
+        
+
+        if R_queue:
+            # Finally, Radiant declares victory.
+            # Dire lost all senators.
+            return 'Radiant'
+        else:
+            # Finally, Dire declares victory.
+            # Radiant lost all senators.
+            return 'Dire'
         
 
 
