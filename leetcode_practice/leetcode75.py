@@ -737,6 +737,42 @@ class Solution:
             # Finally, Dire declares victory.
             # Radiant lost all senators.
             return 'Dire'
+
+# 2095. Delete the Middle Node of a Linked List
+class ListNode(object):
+    # this class was given with the problem
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+class Solution(object):
+    def deleteMiddle(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+
+        if head is None:
+            return None
+        # If head is null, the list is empty. The method returns null since there's nothing to delete.
+        
+        prev = ListNode(0)
+        prev.next = head
+        slow = prev
+        fast = head
+        # A dummy node, prev, is created and its next pointer is set to head. This dummy node serves as a placeholder to simplify edge case handling, especially when the list has only one node or when we need to delete the first real node of the list.
+        # Two pointers, slow and fast, are initialized: slow starts at prev and fast starts at head.
+
+        while fast != None and fast.next != None:
+            slow = slow.next
+            fast = fast.next.next
+            # The list is traversed using the two-pointer technique where fast moves twice as fast as slow. For every move fast makes two steps (if possible), slow makes one step.
+            # This traversal continues until fast reaches the end of the list (fast is null) or fast is at the last node (fast.next is null). At this point, slow will be just before the middle node of the list. This is because while fast moves through the entire list, slow moves only half the distance.
+
+        slow.next = slow.next.next
+        # Once the traversal is complete, slow is either at the node just before the middle of the list (for odd-length lists) or at the node before the second middle node (for even-length lists, where there are two middle nodes, and the first one is considered the middle for deletion).
+        # The middle node is then removed by adjusting the next pointer of the slow node to skip over the middle node and point directly to the node after the middle node. This effectively removes the middle node from the list.
+        return prev.next
+        # Finally, the method returns the new list, but since the prev node was a dummy node added at the start, the method returns prev.next to return the actual head of the modified list. 
         
 
 
