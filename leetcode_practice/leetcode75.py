@@ -773,6 +773,58 @@ class Solution(object):
         # The middle node is then removed by adjusting the next pointer of the slow node to skip over the middle node and point directly to the node after the middle node. This effectively removes the middle node from the list.
         return prev.next
         # Finally, the method returns the new list, but since the prev node was a dummy node added at the start, the method returns prev.next to return the actual head of the modified list. 
+
+# 328. Odd Even Linked List
+class Solution(object):
+    def oddEvenList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+
+        if head == None or head.next == None:
+            return head
+        # Base Case Handling: The code first checks if the input list is either empty (head == null) or contains only one node (head.next == null). 
+            # In either case, the list doesn't need rearranging, so the original head of the list is returned immediately.
+        
+        odd = ListNode(0)
+        even = ListNode(0)
+        # Dummy Head Initialization: Two dummy head nodes, odd and even, are created. 
+            # These nodes serve as the starting points for two separate lists: one to collect all nodes from odd positions and the other for nodes from even positions. 
+            # This is a common technique used to simplify list manipulation by avoiding dealing with special cases for the head node.
+        odd_ptr = odd
+        even_ptr = even
+        # Pointer Initialization: Two pointers, odd_ptr and even_ptr, are initialized to point to the respective dummy heads. 
+            # These pointers will traverse the lists, allowing new nodes to be appended to the respective odd and even lists.
+        idx = 1
+        # This variable is used to determine whether the current node is at an odd or even position
+
+        while head != None:
+            # List Traversal and Node Classification: The code enters a loop that continues until all nodes from the original list (head) have been processed. 
+                # Within the loop, an index variable is used to determine whether the current node is at an odd or even position:
+            if idx % 2 != 0:
+                # If index is odd, the current node belongs to the odd list, so it's appended to the list that odd_ptr is building. 
+                # odd_ptr is then advanced to this newly added node.
+                odd_ptr.next = head
+                odd_ptr = odd_ptr.next
+            else:
+                # If index is even, a similar process is followed for the even list using even_ptr.
+                even_ptr.next = head
+                even_ptr = even_ptr.next
+                
+            head = head.next
+            idx += 1
+        
+        even_ptr.next = None
+        odd_ptr.next = even.next
+        # Linking Odd and Even Lists: After all nodes have been classified and the original list has been fully traversed, the code performs two crucial steps to finalize the rearrangement:
+            # The end of the even list is marked by setting even_ptr.next to null. 
+                # This ensures the even list is properly terminated and doesn't inadvertently link back to any nodes that might follow it in memory.
+            # The odd and even lists are concatenated. 
+                # This is done by setting the next pointer of the last node in the odd list (odd_ptr.next) to point to the first real node in the even list (even.next), effectively skipping the even dummy head.
+        return odd.next
+        # Returning the Result: Finally, the method returns odd.next, which points to the first real node in the odd list, effectively skipping the odd dummy head. 
+            # This is the new head of the rearranged list where all odd-positioned nodes are followed by all even-positioned nodes.
         
 
 
