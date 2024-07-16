@@ -825,6 +825,24 @@ class Solution(object):
         return odd.next
         # Returning the Result: Finally, the method returns odd.next, which points to the first real node in the odd list, effectively skipping the odd dummy head. 
             # This is the new head of the rearranged list where all odd-positioned nodes are followed by all even-positioned nodes.
+
+# 206. Reverse Linked List
+class Solution(object):
+    def reverseList(self, head):
+        # Initialize prev pointer as NULL...
+        prev = None
+        # Initialize the curr pointer as the head...
+        curr = head
+        # Run a loop till curr points to NULL...
+        while curr:
+            # Initialize next pointer as the next pointer of curr...
+            next = curr.next
+            # Now assign the prev pointer to curr’s next pointer.
+            curr.next = prev
+            # Assign curr to prev, next to curr...
+            prev = curr
+            curr = next
+        return prev       # Return the prev pointer to get the reverse linked list...
         
 
 
