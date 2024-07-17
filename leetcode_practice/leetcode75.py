@@ -843,6 +843,31 @@ class Solution(object):
             prev = curr
             curr = next
         return prev       # Return the prev pointer to get the reverse linked list...
+
+# 2130. Maximum Twin Sum of a Linked List
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def pairSum(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: int
+        """
+        nums = []
+        curr = head
+        while curr:
+            nums.append(curr.val)
+            curr = curr.next
+        
+        N = len(nums)
+        res = 0
+        for i in range(N // 2):
+                # // is floor division in python 
+            res = max(res, nums[i] + nums[N - i - 1])
+        
+        return res
         
 
 
