@@ -868,6 +868,50 @@ class Solution(object):
             res = max(res, nums[i] + nums[N - i - 1])
         
         return res
+
+# 104. Maximum Depth of Binary Tree
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+# recursive solution 
+class Solution(object):
+    def maxDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root:
+            return 0
+        
+        return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
+# iterative solution 
+import collections
+class Solution(object):
+    def maxDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        deque = collections.deque()
+        depth = 0
+
+        if root:
+            deque.append(root)
+        
+        while deque:
+            size = len(deque)
+            for _ in range(size):
+                node = deque.popleft()
+                if node.left:
+                    deque.append(node.left)
+                if node.right:
+                    deque.append(node.right)
+            depth += 1
+        
+        return depth
+    
         
 
 
